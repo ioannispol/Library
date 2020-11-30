@@ -33,6 +33,8 @@ int main()
             int id = _inventory.Books.size() + 1;
 
             Book newBook(id, title, author);
+            //Book myBook(1, "Hello", "World");
+
 
             _inventory.AddBook(newBook);
             break;
