@@ -52,9 +52,53 @@ int main()
         }
             break;
         case 3:
+        {
+            std::cout << "Enter a book title to checkout: ";
+            std::string title;
+            std::getline(std::cin, title);
+
+            int foundBookIndex = _inventory.FindBookByTitle(title);
+            
+            if (foundBookIndex >= 0 ){
+                
+                Book* foundBook = &_inventory.Books[foundBookIndex];
+
+                if (foundBook -> CheckedOut)
+                {   
+                    std::cout << "Book already checked out!" << std::endl;
+                    break;
+                }
+                _inventory.CheckOutBook(foundBook);
+                std::cout << "Book checked out!" << std::endl;
+            }else{
+                std::cout << "Book not found!" << std::endl;
+            }
             break;
+        }
         case 4:
+            {
+            std::cout << "Enter a book title to check in: ";
+            std::string title;
+            std::getline(std::cin, title);
+
+            int foundBookIndex = _inventory.FindBookByTitle(title);
+
+            if (foundBookIndex >= 0){
+
+                Book* foundBook = &_inventory.Books[foundBookIndex];
+
+                if (!foundBook -> CheckedOut)
+                {   
+                    std::cout << "Book already checked in!" << std::endl;
+                    break;
+                }
+                _inventory.CheckOutBook(foundBook);
+                std::cout << "Book checked in!" << std::endl;
+            }else{
+                std::cout << "Book not found!" << std::endl;
+            }
             break;
+        }
         
         default:
             std::cout << "Invalid input!\n";

@@ -13,9 +13,9 @@ class Inventory
 
         void AddBook(Book book);
         void RemoveBook(Book book);
-        Book FindBookByTitle(std::string title);
-        void CheckOutBook(Book book);
-        void ChekInBook(Book book);
+        int FindBookByTitle(std::string title);
+        void CheckOutBook(Book* book);
+        void CheckInBook(Book* book);
 
 };
 

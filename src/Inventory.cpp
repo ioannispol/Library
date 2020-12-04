@@ -7,12 +7,26 @@ void Inventory::AddBook(Book book)
     Inventory::Books.push_back(book);
 }
 
-Book Inventory::FindBookByTitle(std::string title)
+int Inventory::FindBookByTitle(std::string title)
 {
-    if (std::find(Inventory::Books.begin(), Inventory::Books.end(), Book(0, title, "")) != Inventory::Books.end())
-    {
 
+    std::vector<Book>::iterator it = std::find(Inventory::Books.begin(), Inventory::Books.end(), Book(0, title, ""));
+    if (it == Inventory::Books.end())
+    {
+        return -1;
     }
 
-    return Book(1, "", "");
+    int index = it - Inventory::Books.begin();
+    
+    return index;
+}
+
+void Inventory::CheckOutBook(Book* book)
+{
+    book -> CheckedOut = true;      //dereference the pointer
+}
+
+void Inventory::CheckInBook(Book* book)
+{
+    book -> CheckedOut = false;
 }
