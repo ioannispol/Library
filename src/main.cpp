@@ -99,7 +99,15 @@ int main()
             }
             break;
         }
-        
+        case 5:
+        {   
+            std::cout << "Enter Title: ";
+            std::string title;
+            std::getline(std::cin, title);
+
+            _inventory.RemoveBook(title);
+            break;
+        }
         default:
             std::cout << "Invalid input!\n";
             break;
@@ -118,7 +126,8 @@ void menu_selection() {
         std::cout << "1. Add Book: " << std::endl;
         std::cout << "2. List all books: " << std::endl;
         std::cout << "3. Check out book: " << std::endl;
-        std::cout << "4. Check in book : " << std::endl;
+        std::cout << "4. Check in book: " << std::endl;
+        std::cout << "5. Remove book from library: " << std::endl;
 
-        std::cout << "0. Exit : " << std::endl;
+        std::cout << "0. Exit: " << std::endl;
 }
