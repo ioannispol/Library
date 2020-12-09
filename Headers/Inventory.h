@@ -8,6 +8,8 @@
 
 class Inventory
 {
+    private:
+
     public:
         std::vector<Book> Books;
 

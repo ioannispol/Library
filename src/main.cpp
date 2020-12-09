@@ -9,6 +9,7 @@ void AddNewBook();
 void ListAllBooks();
 void CheckInOrOutBooks(bool checkIn);
 void RemoveBook();
+void DisplayCheckedOutBooks();
 
 Inventory _inventory;
 
@@ -40,6 +41,9 @@ int main()
         case 5:
             RemoveBook();
             break;
+        case 6:
+            DisplayCheckedOutBooks();
+            break;
         default:
             std::cout << "Invalid input!\n";
             break;
@@ -61,6 +65,8 @@ void menu_selection()
         std::cout << "3. Check out book: " << std::endl;
         std::cout << "4. Check in book: " << std::endl;
         std::cout << "5. Remove book from library: " << std::endl;
+        std::cout << "6. List all checked out books: " << std::endl;
+        
 
         std::cout << "0. Exit: " << std::endl;
 }
@@ -154,4 +160,23 @@ void RemoveBook()
             std::getline(std::cin, title);
 
             _inventory.RemoveBook(title);
+}
+
+/***********************************************************************
+ ********************** DisplayCheckedOutBooks function ****************
+ **********************************************************************/
+void DisplayCheckedOutBooks()
+{
+
+    if (_inventory.Books.size() == 0){
+        std::cout << "The Books List is empty! Please add a book first." << std::endl; 
+    } else {
+        std::cout << "\nID\tTitle\tAuthor" << std::endl;
+        for (int i = 0; i < _inventory.Books.size(); i++) {
+            if (_inventory .Books[i].CheckedOut){
+                std::cout << _inventory.Books[i].Id << "\t" << _inventory.Books[i].Title << "\t" << _inventory.Books[i].Author << std::endl;
+            }
+        }
+        std::cout << std::endl;
+    }
 }
