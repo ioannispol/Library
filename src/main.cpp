@@ -84,7 +84,7 @@ void AddNewBook()
             std::string author;
             std::getline(std::cin, author);
 
-            int id = _inventory.Books.size() + 1;
+            int id = _inventory.GetNextBookId();
 
             Book newBook(id, title, author);
             //Book myBook(1, "Hello", "World");
@@ -98,12 +98,12 @@ void AddNewBook()
  **********************************************************************/
 void ListAllBooks()
 {
-    if (_inventory.Books.size() == 0){
+    if (_inventory.NumberOfBooks() == 0){
                     std::cout << "The Books List is empty! Please add a book first." << std::endl; 
                 } else {
                     std::cout << "\nID\tTitle\tAuthor" << std::endl;
-                    for (int i = 0; i < _inventory.Books.size(); i++) {
-                        std::cout << _inventory.Books[i].Id << "\t" << _inventory.Books[i].Title << "\t" << _inventory.Books[i].Author << std::endl;
+                    for (int i = 0; i < _inventory.NumberOfBooks(); i++) {
+                        std::cout << _inventory.GetBookByIndex(i) -> Id << "\t" <<_inventory.GetBookByIndex(i) -> Title << "\t" << _inventory.GetBookByIndex(i) -> Author << std::endl;
                     }
                 }
 }
@@ -128,7 +128,7 @@ void CheckInOrOutBooks(bool checkIn)
             
             if (foundBookIndex >= 0 ){
                 
-                Book* foundBook = &_inventory.Books[foundBookIndex];
+                Book* foundBook = _inventory.GetBookByIndex(foundBookIndex);
 
                 // if checkedOut == false then we're checke in
                 // if checkedPut == true then we're checked out
@@ -168,13 +168,13 @@ void RemoveBook()
 void DisplayCheckedOutBooks()
 {
 
-    if (_inventory.Books.size() == 0){
+    if (_inventory.NumberOfBooks() == 0){
         std::cout << "The Books List is empty! Please add a book first." << std::endl; 
     } else {
         std::cout << "\nID\tTitle\tAuthor" << std::endl;
-        for (int i = 0; i < _inventory.Books.size(); i++) {
-            if (_inventory .Books[i].CheckedOut){
-                std::cout << _inventory.Books[i].Id << "\t" << _inventory.Books[i].Title << "\t" << _inventory.Books[i].Author << std::endl;
+        for (int i = 0; i < _inventory.NumberOfBooks(); i++) {
+            if (_inventory.GetBookByIndex(i) -> CheckedOut){
+                std::cout << _inventory.GetBookByIndex(i) -> Id << "\t" << _inventory.GetBookByIndex(i) -> Title << "\t" << _inventory.GetBookByIndex(i) -> Author << std::endl;
             }
         }
         std::cout << std::endl;

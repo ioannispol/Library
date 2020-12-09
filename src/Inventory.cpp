@@ -2,6 +2,27 @@
 #include <vector>
 #include<bits/stdc++.h> 
 
+Inventory::Inventory()
+{
+    Inventory::MaxBookId = 0;
+}
+
+int Inventory::GetNextBookId()
+{
+    Inventory::MaxBookId++;
+    return Inventory::MaxBookId;
+}
+
+int Inventory::NumberOfBooks()
+{
+    return Inventory::Books.size();
+}
+
+Book* Inventory::GetBookByIndex(int index)
+{
+    return &Inventory::Books[index];
+}
+
 void Inventory::AddBook(Book book)
 {
     Inventory::Books.push_back(book);
