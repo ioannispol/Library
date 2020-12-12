@@ -11,7 +11,7 @@ class Book
         bool CheckedOut{};
 
         Book();
-        Book(int id, std::string title, std::string author);
+        Book(std::string title, std::string author);
 
         bool operator == (const Book &book) const
         {

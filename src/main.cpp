@@ -84,9 +84,7 @@ void AddNewBook()
             std::string author;
             std::getline(std::cin, author);
 
-            int id = _inventory.GetNextBookId();
-
-            Book newBook(id, title, author);
+            Book newBook(title, author);
             //Book myBook(1, "Hello", "World");
 
 
@@ -111,14 +109,14 @@ void ListAllBooks()
 /***********************************************************************
  ********************** CheckInOrOutBooks function *********************
  **********************************************************************/
-void CheckInOrOutBooks(bool checkIn)
+void CheckInOrOutBooks(bool checkOut)
 {
     std::string InOrOut;
-    if (checkIn){
-        InOrOut = "in";
+    if (checkOut){
+        InOrOut = "out";
     }
     else{
-        InOrOut = "out";
+        InOrOut = "in";
     }
     std::cout << "Enter a book title to check" + InOrOut + ": ";
             std::string title;
@@ -133,16 +131,16 @@ void CheckInOrOutBooks(bool checkIn)
                 // if checkedOut == false then we're checke in
                 // if checkedPut == true then we're checked out
 
-                if (!foundBook -> CheckedOut == checkIn)
+                if (foundBook -> CheckedOut == checkOut)
                 {   
                     std::cout << "Book already checked" + InOrOut + "!" << std::endl;
                     return;
                 }
-                if (checkIn){
-                    _inventory.CheckInBook(foundBook);
+                if (checkOut){
+                    _inventory.CheckOutBook(foundBook);
                 }
                 else{
-                    _inventory.CheckOutBook(foundBook);
+                    _inventory.CheckInBook(foundBook);
                 }
                 std::cout << "Book checked " + InOrOut + "!" << std::endl;
             }else{
